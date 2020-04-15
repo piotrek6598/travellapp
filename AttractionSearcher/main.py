@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from AttractionSearcher.search import Searcher
 import sys
 
