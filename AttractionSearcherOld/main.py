@@ -18,7 +18,7 @@ def printPlace(place):
     if 'rating' in place:
         print('Google Maps rating:', end = ' ')
         print(place["rating"])
-    print()
+    #print()
 
 def goodPlace(place, tags, rating):
     if 'types' not in place:
@@ -72,13 +72,16 @@ try:
             i += 1
         if good == 0:
             print('No results matching.')
+            exit(1)
     
 
 except IndexError:
     print("not enough arguments (excepted at least 3: [location], [any number of tags] [rating] [results])")
+    exit(1)
 except ValueError:
     print("invalid literal for [rating] parameter")
+    exit(1)
 except KeyError:
     print("No results matching")
-
+    exit(1)
     

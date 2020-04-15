@@ -2,46 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Travelapp</title>
+    <title>Your trip</title>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
 </head>
 
 <body class="tripBody">
 
 <?php
-$startPlace = $_POST['startPlace'];
-$stop1 = $_POST['stopPlace1'];
-$stop2 = $_POST['stopPlace2'];
-$stop3 = $_POST['stopPlace3'];
-$stop4 = $_POST['stopPlace4'];
-$stop5 = $_POST['stopPlace5'];
+/**
+ * Variable representing number of stops.
+ */
 $stops = $_POST['stops'];
 
-$stopArr = array(0 => $startPlace, 1 => $stop1, 2 => $stop2, 3 => $stop3, 4 => $stop4, 5 => $stop5);
+/**
+ * Array containing stops.
+ */
+$stopArr = array(0 => $_POST['startPlace'], 1 => $_POST['stopPlace1'],
+    2 => $_POST['stopPlace2'], 3 => $_POST['stopPlace3'], 4 => $_POST['stopPlace4'],
+    5 => $_POST['stopPlace5']);
 
-$command = "python3 ./bestRoute/main.py \"". $stopArr[0] . "\" " . $stops;
+/**
+ * Creating command for searching best trip.
+ */
+$command = "python3 ./bestRoute/main.py \"" . $stopArr[0] . "\" " . $stops;
 for ($i = 1; $i <= $stops; $i++) {
-    $command = $command . " \"" . $stopArr[$i]. "\"";
+    $command = $command . " \"" . $stopArr[$i] . "\"";
 }
 
 
 exec($command, $output, $ret);
 
+/**
+ * Printing information about error, if occurred.
+ */
 if ($ret == 1) {
-    echo "ERROR";
-    exit(0);
+    echo "<div class='errorBox'>";
+    echo "<p class='errorMessage'>";
+    echo "Sorry <br> We didn't find one of selected places or it's impossible to travel by car";
+    echo "</p>";
+    echo "</div>";
+    exit;
 }
 
 echo "<header>";
 echo "Our suggested trip is: <br>";
 echo "</header>";
 
-for ($i = 3; $i <= $stops + 4; $i++) {
+/**
+ * Printing founded route with photo and small information about place.
+ */
+for ($i = 3; $i <= $stops + 3; $i++) {
+    $command = "python3 ./AttractionSearcherOld/main.py \"" . $output[$i] . "\" 4 2";
+    exec ($command, $attrOutput, $ret);
     echo "<div class='tripStep'>";
-    echo ($i - 2).". " . $output[$i]. "<br>";
+    echo "<div class='cityName'>";
+    echo ($i - 2) . ". " . $output[$i]. "<br>";
+    echo "</div>";
+    if ($ret == 0) {
+        echo "<div class='cityDesc'>";
+        echo $attrOutput[1];
+        if (count($attrOutput) > 5) {
+            echo "<br>". $attrOutput[5];
+        }
+        echo "</div>";
+    }
+    unset($attrOutput);
     echo "</div>";
 }
 
+echo "<div class='tripStep'>";
+echo "<div class='cityName'>";
+echo ($stops + 2) . ". " . $output[$stops + 4]. "<br>";
+echo "</div>";
+echo "</div>";
+
+/**
+ * Printing trip summary.
+ */
 echo "<div class='tripSummary'>";
 echo $output[0] . " ";
 echo "<span class='minutesSummary'>";

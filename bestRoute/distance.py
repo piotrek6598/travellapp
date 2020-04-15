@@ -12,7 +12,7 @@ def toMinutes(secs):
 # Calculates how much time (in minutes) we need to get from source to destination,
 # using Google Distance Matrix API. Returns -1 if any of locations is invalid.
 def distance(source, destination):
-    gmaps = googlemaps.Client(key='########################')
+    gmaps = googlemaps.Client(key='AIzaSyCiCUMr22NKSzfi8nOVR3UFcym-j22oOcY')
     x = gmaps.distance_matrix(source, destination)
     if 'rows' not in x:
         return -1

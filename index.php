@@ -7,11 +7,13 @@
 </head>
 <body>
 
+<!-- Column with trip finder. -->
 <div id="tripPlan">
     <header>
         Plan your trip
     </header>
-    <form action="trip.php" method="post" id="tripForm">
+    <!-- Form enabling founding best trip. -->
+    <form action="trip.php" method="post" id="tripForm" target="_blank">
         <label></label>
         <input type="text" name="startPlace" id="departurePlace"
                placeholder="Start place" required/>
@@ -48,12 +50,34 @@
             <br>
         </div>
 
+        <!-- Button adds more possible stops. -->
         <input type="button" name="moreStops" value="+"
                onclick="addStop()" style="border-radius: 50%; width: 50px"/>
         <span id="addStopLabel" onclick="addStop()"><a
-                href="#">Add more stops</a></span>
-        <input type="hidden" name="stops" id="totalStops" value=""/>
+                href="#">Add more stops (max. 5)</a></span>
+        <input type="hidden" name="stops" id="totalStops" value=""/> <br> <!--- Hidden field with number of active stops -->
         <input type="submit" name="planTrip" onclick="postStops()" value="Plan your trip"/>
+        <input type="reset" name="resetArgs" value="Reset trip"/>
+    </form>
+</div>
+
+<!-- Column with attractions finder. -->
+<div id="attractionSearch">
+    <header>
+        Look for attractions
+    </header>
+    <form action="attractions.php" method="post" id="attractionsSearchForm" target="_blank">
+        <label></label>
+        <input type="text" name="attractionsPlace" placeholder="Place" required/>
+        <br>
+        <input type="number" name="attractionsLimit" id="attractionsLimit" placeholder="Attractions limit (e.g. 2)"/>
+        <span>Default is 5</span>
+        <br>
+        <input type="number" name="attractionsRating" id="attractionsRating" placeholder="Minimum rating (e.g. 3.2)" step="0.1"/>
+        <span>Default is 3.0</span>
+        <br>
+        <input type="submit" name="searchAttractions" value="Search attractions" onclick="postAttraction()">
+        <input type="reset" name="restArgs" value="Clear" style="width: 150px"/>
     </form>
 </div>
 

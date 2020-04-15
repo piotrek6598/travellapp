@@ -1,3 +1,5 @@
+/** Main part description.
+ */
 body {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -16,6 +18,36 @@ header {
     margin-bottom: 10px;
 }
 
+input {
+    height: 50px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-left: 5px;
+}
+
+.errorBox {
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.errorMessage {
+    position: relative;
+    padding-left: 5px;
+    padding-right: 5px;
+    top: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: deepskyblue;
+    width: 75%;
+    font-size: 50px;
+}
+
+/** Detailed description of trip finder column.
+ */
 #tripPlan {
     grid-column: 1;
     margin-left: 80px;
@@ -36,9 +68,6 @@ header {
 }
 
 #tripForm input {
-    height: 50px;
-    margin-top: 5px;
-    margin-bottom: 5px;
     width: 200px;
     font-size: 25px;
 }
@@ -65,6 +94,33 @@ header {
     width: 50px;
 }
 
+/** Detailed description of attractions searcher column.
+ */
+#attractionsSearchForm input {
+    width: 300px;
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+#attractionsSearchForm {
+    font-size: 25px;
+}
+
+/** Detailed description of attractions list page.
+ */
+.attractionsBody {
+    grid-template-columns: 1fr;
+}
+
+.attractionsBody header {
+    text-align: center;
+    font-size: 40px;
+    color: black;
+    margin-top: 80px;
+}
+
+/** Detailed description of trip page.
+ */
 .tripBody {
     grid-template-columns: 1fr;
 }
@@ -78,12 +134,15 @@ header {
 }
 
 .tripStep {
+    display: inline;
+    position: relative;
     font-size: 30px;
     color: green;
     font-weight: bold;
     margin-left: 80px;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    height: 200px;
 }
 
 .tripSummary {
@@ -96,4 +155,43 @@ header {
 .minutesSummary {
     color: blue;
     font-weight: bold;
+}
+
+.cityPhoto {
+    display: inline-block;
+    height: 200px;
+    width: 120px;
+    left: 280px;
+    position: absolute;
+}
+
+.cityName {
+    position: relative;
+    top: 90px;
+    display: inline-block;
+}
+
+.cityDesc {
+    position: relative;
+    top: 100px;
+    left: 30px;
+    display: block;
+    font-size: 15px;
+    color: black;
+    font-weight: normal;
+}
+
+.attractionBox {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 20px;
+    left: 30%;
+    position: relative;
+}
+
+.attractionName {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 25px;
 }
