@@ -1,4 +1,3 @@
-import numpy as np
 import settings
 
 def swap(array, x, y):

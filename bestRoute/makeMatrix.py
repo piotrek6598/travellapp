@@ -1,6 +1,4 @@
 import distance
-import numpy as np
-import time
 
 # Given a matrix filled with zeros and list of locations, creates a matrix of times.
 # Value stored at matrix[i][j] represents time (in minutes)
