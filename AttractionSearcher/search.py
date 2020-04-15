@@ -81,7 +81,7 @@ class Searcher:
             self._retrieve_next_page(results, next_page_token, 2, page_num)
 
         for res in results:
-            photo_ref = res['photos'][0] if len(res['photos']) > 0 else None
+            photo_ref = res['photos'][0] if 'photos' in res else None
             if photo_ref is not None:  # replaces photo reference by a photo file. Field remains singleton-list.
                 res['photos'] = [self._get_photo(photo_ref)]
             else:
@@ -146,9 +146,10 @@ try:
     pages = int(sys.argv[2])
 
     searcher = Searcher()
-    print(searcher.get_places_query(location, pages))
+    res = searcher.get_places_query(location, pages)
+    print(res)
 
 except IndexError:
     print("not enough arguments (excepted 2: [location], [pages])")
 except ValueError:
-    print("invalid literal for [pages] parameter")
+    print("invalid literal for [pages] parameter or invalid google-api key")
