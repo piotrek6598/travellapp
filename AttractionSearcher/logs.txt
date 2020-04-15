@@ -125,3 +125,14 @@ time = Wed Apr 15 11:56:01 2020, get_places_query() ends
 time = Wed Apr 15 11:57:19 2020, get_places_query() starts
 time = Wed Apr 15 11:57:20 2020, get_places_query() ends
 
+time = Wed Apr 15 12:03:07 2020, get_places_query() starts
+time = Wed Apr 15 12:03:21 2020, get_places_query() starts
+time = Wed Apr 15 12:05:56 2020, get_places_query() starts
+time = Wed Apr 15 12:05:57 2020, get_places_query() ends
+
+time = Wed Apr 15 12:15:45 2020, get_places_query() starts
+time = Wed Apr 15 12:15:47 2020, get_places_query() ends
+
+time = Wed Apr 15 12:17:23 2020, get_places_query() starts
+time = Wed Apr 15 12:17:25 2020, get_places_query() ends
+

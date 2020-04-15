@@ -1,7 +1,7 @@
 from googlemaps.exceptions import ApiError
+from AttractionSearcher import paths
 import googlemaps
 import yaml
-from AttractionSearcher import paths
 import time
 
 
@@ -14,7 +14,7 @@ class PresearchException(Exception):
                "cause: " + self._cause
 
 
-class Presearch:
+class Searcher:
     """
     :param: _client:            A google-api client used to perform requests
                                 client docs: https://googlemaps.github.io/google-maps-services-python/docs/index.html
