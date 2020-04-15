@@ -1,7 +1,7 @@
 from googlemaps.exceptions import ApiError
 import googlemaps
 import yaml
-import paths
+from AttractionSearcher import paths
 import time
 
 
@@ -60,7 +60,7 @@ class Presearch:
         if response['status'] != 'OK':
             raise PresearchException('Google Client request failed')
 
-        pages = min(pages, self._max_pages)
+        pages = min(int(pages), int(self._max_pages))
         results = response['results']
         next_page_token = response['next_page_token']
 
