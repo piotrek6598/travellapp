@@ -1,4 +1,4 @@
-from AttractionSearcher.scripts.search import Searcher
+from AttractionSearcher.search import Searcher
 import sys
 
 

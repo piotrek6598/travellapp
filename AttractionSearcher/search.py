@@ -30,7 +30,7 @@ class Searcher:
     """
 
     def __init__(self):
-        self._basedir_path = str(Path(__file__).parent.parent.absolute())
+        self._basedir_path = str(Path(__file__).parent.absolute())
         self._config_path = os.path.join(self._basedir_path, 'config.yml')
         self._logs_path = os.path.join(self._basedir_path, 'logs.txt')
         self._client = googlemaps.Client(key=self._get_api_key())
