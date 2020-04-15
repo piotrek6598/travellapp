@@ -71,7 +71,7 @@ try:
     
 
 except IndexError:
-    print("not enough arguments (excepted 2: [location], [pages])")
+    print("not enough arguments (excepted at least 2: [location], [any number of tags] [rating])")
 except ValueError:
     print("invalid literal for [rating] parameter")
 except KeyError:
