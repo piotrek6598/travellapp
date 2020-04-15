@@ -131,14 +131,14 @@ class Searcher:
         if processed is False:
             raise SearchException("google-api delay too huge")
 
-    def _get_photo(self, ref):
+    def _get_photo(self, reference):
         """
         Creates photo url
-        :param ref:  Photo reference obtained from places-api' response
-        :return:     Url, which is google-api request
+        :param reference:  Photo reference obtained from places-api' response
+        :return:           Url, which is google-api request
         """
-        photo_ref = ref['photo_reference']
-        return f'{self._photo_endpoint}?maxwidth={self._max_width}&photoreference={photo_ref}&key={self._get_api_key()}'
+        ref = reference['photo_reference']
+        return f'{self._photo_endpoint}?maxwidth={self._max_width}&photoreference={ref}&key={self._get_api_key()}'
 
 
 try:
