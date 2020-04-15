@@ -136,3 +136,6 @@ time = Wed Apr 15 12:15:47 2020, get_places_query() ends
 time = Wed Apr 15 12:17:23 2020, get_places_query() starts
 time = Wed Apr 15 12:17:25 2020, get_places_query() ends
 
+time = Wed Apr 15 12:33:13 2020, get_places_query() starts
+time = Wed Apr 15 12:33:16 2020, get_places_query() ends
+
