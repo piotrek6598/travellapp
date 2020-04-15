@@ -6,11 +6,11 @@ Aplikacja turystyczna “Na krańcu świata” jest narzędziem pomagającym zap
 
 Do postawienia strony potrzebna jest maszyna linuxowa z serwerem www i php. Dodatkowo należy zainstalować interpreter pythona3 wraz z menedżerem pakietów pip. Do poprawnego działania strony potrzebne są pakiety *googlemaps*, *PyAML*, *requests* i *numpy*.
 
-Przykładowo w katalogu domowym nalezy
+Przykładowo w katalogu domowym należy
 ```
 mkdir public_html
 ```
-nastepnie umiescic tam katalog ze sklonowanym repozytorium (o nazwie np travellapp-master) i wywołać
+następnie umieścić tam katalog ze sklonowanym repozytorium (o nazwie np travellapp-master) i wywołać
 ```
 php -S localhost:8000 -t travellapp-master
 ```
