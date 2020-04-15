@@ -1,10 +1,11 @@
-from pathlib import Path
 from googlemaps.exceptions import ApiError
+from pathlib import Path
 import googlemaps
 import json
 import yaml
 import time
 import os
+import sys
 
 
 class SearchException(Exception):
@@ -117,3 +118,16 @@ class Searcher:
 
         if processed is False:
             raise SearchException("google-api delay too huge")
+
+
+try:
+    location = sys.argv[1]  # first param - [0] is an executed path
+    pages = int(sys.argv[2])
+
+    searcher = Searcher()
+    print(searcher.get_places_query(location, pages))
+
+except IndexError:
+    print("not enough arguments (excepted 2: [location], [pages])")
+except ValueError:
+    print("invalid literal for [pages] parameter")
