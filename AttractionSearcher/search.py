@@ -1,8 +1,10 @@
+from pathlib import Path
 from googlemaps.exceptions import ApiError
-from AttractionSearcher import paths
 import googlemaps
+import json
 import yaml
 import time
+import os
 
 
 class SearchException(Exception):
@@ -22,22 +24,27 @@ class Searcher:
     :param: _query_type:        Additional parameter crucial to narrow request results.
     :param: _next_page_delay:   Arbitrary chosen the accepted delay between retrieving pages of results.
     :param: _max_pages:         The max number of pages to retrieve per request provided by google-api
+    :param: _basedir_path:      Path to the project directory.
+    :param: _config_path:       Path to the config directory.
+    :param: _logs_path:         Path to the logs directory.
     """
 
     def __init__(self):
+        self._basedir_path = str(Path(__file__).parent.absolute())
+        self._config_path = os.path.join(self._basedir_path, 'config.yml')
+        self._logs_path = os.path.join(self._basedir_path, 'logs.txt')
         self._client = googlemaps.Client(key=self._get_api_key())
         self._query_endpoint = "Tourist attractions in "
         self._query_type = "tourist_attraction"
         self._next_page_delay = 2.0
         self._max_pages = 3
 
-    @staticmethod
-    def _get_api_key():
+    def _get_api_key(self):
         """
         Extracts api-key from config file stored in AttractionSearcher/
         :return: api-key
         """
-        with open(paths.PATH_TO_CONFIG, 'r') as config_file:
+        with open(self._config_path, 'r') as config_file:
             config = yaml.safe_load(config_file)
             return config['google']['api_key']
 
@@ -49,7 +56,7 @@ class Searcher:
         :return: List of results
         """
 
-        with open(paths.PATH_TO_LOGS, 'a') as logs:
+        with open(self._logs_path, 'a') as logs:
             logs.write(f"time = {time.ctime()}, get_places_query() starts\n")
 
         response = self._client.places(
@@ -67,10 +74,11 @@ class Searcher:
         if next_page_token is not None and pages > 1:
             self._retrieve_next_page(results, next_page_token, 2, pages)
 
-        with open(paths.PATH_TO_LOGS, 'a') as logs:
+        with open(self._logs_path, 'a') as logs:
             logs.write(f"time = {time.ctime()}, get_places_query() ends\n")
             logs.write('\n')
-        return results
+
+        return json.dumps(results)
 
     def _retrieve_next_page(self, results, token, page, max_page):
         """
@@ -104,7 +112,7 @@ class Searcher:
 
             except ApiError:
                 time_now = time.time()
-                with open(paths.PATH_TO_LOGS, 'a') as logs:
+                with open(self._logs_path, 'a') as logs:
                     logs.write(f"depth = {page}, time = {time_now}, waiting for token validation...\n")
 
         if processed is False:
