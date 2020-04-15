@@ -8,11 +8,11 @@ import numpy as np
 
 
 def printRoute(places, order):
-    print('The best route is:')
-    print(places[0], end='->')
+    #print('The best route is:')
+    print(places[0])
     for i in range (len(order)):
         num = int(order[i])
-        print(listOfLocations[num], end='->')
+        print(listOfLocations[num])
     print(places[0])
 
 
@@ -62,7 +62,7 @@ settings.initGlobals(n)
 permutations.perms(matrix, array, n)
 
 # Printing results.
-print('This journey takes', end = ' ')
-print(settings.bestTime, end = ' ')
+print('This journey takes')
+print(settings.bestTime)
 print('minutes')
 printRoute(listOfLocations, settings.bestRoute)

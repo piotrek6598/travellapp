@@ -6,7 +6,7 @@
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
 </head>
 
-<body>
+<body class="tripBody">
 
 <?php
 $startPlace = $_POST['startPlace'];
@@ -17,10 +17,39 @@ $stop4 = $_POST['stopPlace4'];
 $stop5 = $_POST['stopPlace5'];
 $stops = $_POST['stops'];
 
-$command = "python3 ./bestRoute/main.py Warsaw ". "2 ". "Gdansk ". "Cracow";
-$output = passthru($command);
-echo "OK";
-echo $output . "<br>";
+$stopArr = array(0 => $startPlace, 1 => $stop1, 2 => $stop2, 3 => $stop3, 4 => $stop4, 5 => $stop5);
+
+$command = "python3 ./bestRoute/main.py \"". $stopArr[0] . "\" " . $stops;
+for ($i = 1; $i <= $stops; $i++) {
+    $command = $command . " \"" . $stopArr[$i]. "\"";
+}
+
+
+exec($command, $output, $ret);
+
+if ($ret == 1) {
+    echo "ERROR";
+    exit(0);
+}
+
+echo "<header>";
+echo "Our suggested trip is: <br>";
+echo "</header>";
+
+for ($i = 3; $i <= $stops + 4; $i++) {
+    echo "<div class='tripStep'>";
+    echo ($i - 2).". " . $output[$i]. "<br>";
+    echo "</div>";
+}
+
+echo "<div class='tripSummary'>";
+echo $output[0] . " ";
+echo "<span class='minutesSummary'>";
+echo $output[1] . " ";
+echo "</span>";
+echo $output[2];
+echo "</div>";
+
 ?>
 
 </body>
