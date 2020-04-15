@@ -5,12 +5,12 @@ import yaml
 import time
 
 
-class PresearchException(Exception):
+class SearchException(Exception):
     def __init__(self, cause):
         self._cause = cause
 
     def __str__(self):
-        return "Presearch Exception:\n" \
+        return "Search Exception:\n" \
                "cause: " + self._cause
 
 
@@ -58,7 +58,7 @@ class Searcher:
         )
 
         if response['status'] != 'OK':
-            raise PresearchException('Google Client request failed')
+            raise SearchException('Google Client request failed')
 
         pages = min(int(pages), int(self._max_pages))
         results = response['results']
@@ -108,4 +108,4 @@ class Searcher:
                     logs.write(f"depth = {page}, time = {time_now}, waiting for token validation...\n")
 
         if processed is False:
-            raise PresearchException("google-api delay too huge")
+            raise SearchException("google-api delay too huge")
