@@ -117,3 +117,11 @@ depth = 3, time = 1586943615.869608, waiting for token validation...
 depth = 3, time = 1586943615.9922776, waiting for token validation...
 time = Wed Apr 15 11:40:16 2020, get_places_query() ends
 
+time = Wed Apr 15 11:51:39 2020, get_places_query() starts
+time = Wed Apr 15 11:54:29 2020, get_places_query() starts
+time = Wed Apr 15 11:56:00 2020, get_places_query() starts
+time = Wed Apr 15 11:56:01 2020, get_places_query() ends
+
+time = Wed Apr 15 11:57:19 2020, get_places_query() starts
+time = Wed Apr 15 11:57:20 2020, get_places_query() ends
+
