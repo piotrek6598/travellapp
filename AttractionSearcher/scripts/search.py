@@ -1,6 +1,7 @@
 from pathlib import Path
 from googlemaps.exceptions import ApiError
 import googlemaps
+import json
 import yaml
 import time
 import os
@@ -76,7 +77,8 @@ class Searcher:
         with open(self._logs_path, 'a') as logs:
             logs.write(f"time = {time.ctime()}, get_places_query() ends\n")
             logs.write('\n')
-        return results
+
+        return json.dumps(results)
 
     def _retrieve_next_page(self, results, token, page, max_page):
         """
