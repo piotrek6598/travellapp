@@ -16,7 +16,7 @@ $place = $_POST['attractionsPlace'];
 $limit = $_POST['attractionsLimit'];
 $rating = $_POST['attractionsRating'];
 
-$command = "python3 ./AttractionSearcherOld/main.py \"" . $place . "\" " . $rating . " " . $limit;
+$command = "python3 ./AttractionSearcher/main.py \"" . $place . "\" " . $rating . " " . $limit;
 
 exec($command, $output, $ret);
 
@@ -46,7 +46,14 @@ for ($i = 1; $i <= $maxi; $i += 4) {
     echo "<div class='attractionName'>";
     echo $output[$i]. "<br>";
     echo "</div>";
+    echo "<div class='attractionDesc'>";
     echo $output[$i + 1] . "<br>" . $output[$i + 3];
+    echo "</div>";
+    if ($output[$i + 2] != "") {
+        echo "<div class='attractionPhoto'>";
+        echo "<img src='". $output[$i + 2]. "'>";
+        echo "</div>";
+    }
     echo "</div>";
 }
 

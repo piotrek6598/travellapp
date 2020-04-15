@@ -10,7 +10,6 @@ def printPlace(place):
     print('Address:', end = ' ')
     print(place["formatted_address"])
     if 'photos' in place and len(place["photos"]) > 0:
-        print('Photos:', end= ' ')
         print(place["photos"][0])
     if 'rating' not in place:
         exit(1)
@@ -69,13 +68,17 @@ try:
             i += 1
         if good == 0:
             print('No results matching.')
+            exit(1)
     
 
 except IndexError:
     print("not enough arguments (excepted at least 3: [location], [any number of tags] [rating] [results])")
+    exit(1)
 except ValueError:
     print("invalid literal for [rating] or [results] parameter")
+    exit(1)
 except KeyError:
     print("No results matching.")
+    exit(1)
 
     

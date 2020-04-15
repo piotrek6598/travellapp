@@ -51,30 +51,31 @@ echo "</header>";
 /**
  * Printing founded route with photo and small information about place.
  */
-for ($i = 3; $i <= $stops + 3; $i++) {
-    $command = "python3 ./AttractionSearcherOld/main.py \"" . $output[$i] . "\" 4 2";
+for ($i = 3; $i <= $stops + 4; $i++) {
+    $command = "python3 ./AttractionSearcher/main.py \"" . $output[$i] . "\" 4 2";
     exec ($command, $attrOutput, $ret);
     echo "<div class='tripStep'>";
     echo "<div class='cityName'>";
     echo ($i - 2) . ". " . $output[$i]. "<br>";
     echo "</div>";
     if ($ret == 0) {
-        echo "<div class='cityDesc'>";
-        echo $attrOutput[1];
-        if (count($attrOutput) > 5) {
-            echo "<br>". $attrOutput[5];
+        if ($i != $stops + 4) {
+            echo "<div class='cityDesc'>";
+            echo $attrOutput[1];
+            if (count($attrOutput) > 5) {
+                echo "<br>" . $attrOutput[5];
+            }
+            echo "</div>";
         }
-        echo "</div>";
+        if ($attrOutput[3] != ""){
+            echo "<div class='cityPhoto'>";
+            echo "<img src='".$attrOutput[3]. "'>";
+            echo "</div>";
+        }
     }
     unset($attrOutput);
     echo "</div>";
 }
-
-echo "<div class='tripStep'>";
-echo "<div class='cityName'>";
-echo ($stops + 2) . ". " . $output[$stops + 4]. "<br>";
-echo "</div>";
-echo "</div>";
 
 /**
  * Printing trip summary.

@@ -1,3 +1,0 @@
-googlemaps==4.2.0
-PyYAML==5.3.1
-requests==2.23.0

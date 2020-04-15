@@ -134,7 +134,7 @@ input {
 }
 
 .tripStep {
-    display: inline;
+    display: inherit;
     position: relative;
     font-size: 30px;
     color: green;
@@ -158,23 +158,25 @@ input {
 }
 
 .cityPhoto {
-    display: inline-block;
+    display: block;
     height: 200px;
     width: 120px;
-    left: 280px;
+    left: 300px;
     position: absolute;
 }
 
 .cityName {
     position: relative;
     top: 90px;
+    width: 280px;
     display: inline-block;
 }
 
 .cityDesc {
     position: relative;
-    top: 100px;
-    left: 30px;
+    top: 30px;
+    margin-left: 30px;
+    width: 280px;
     display: block;
     font-size: 15px;
     color: black;
@@ -185,8 +187,10 @@ input {
     margin-top: 25px;
     margin-bottom: 25px;
     font-size: 20px;
-    left: 30%;
+    margin-left: 150px;
+    height: 200px;
     position: relative;
+    display: inherit;
 }
 
 .attractionName {
@@ -194,4 +198,22 @@ input {
     margin-bottom: 5px;
     font-weight: bold;
     font-size: 25px;
+    position: relative;
+    display: inline-block;
+    top: 60px;
+}
+
+.attractionPhoto {
+    display: block;
+    height: 200px;
+    width: 120px;
+    left: 450px;
+    position: absolute;
+}
+
+.attractionDesc {
+    display: inherit;
+    position: relative;
+    top: 20px;
+    width: 400px;
 }

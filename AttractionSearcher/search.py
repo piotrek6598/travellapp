@@ -43,7 +43,7 @@ class Searcher:
         self._query_type = "tourist_attraction"
         self._next_page_delay = 2.0
         self._max_pages = 3
-        self._max_width = 1080
+        self._max_height = 200
 
     def _get_api_key(self):
         """
@@ -138,5 +138,5 @@ class Searcher:
         :return:           Url, which is google-api request
         """
         ref = reference['photo_reference']
-        return f'{self._photo_endpoint}?maxwidth={self._max_width}&photoreference={ref}&key={self._get_api_key()}'
+        return f'{self._photo_endpoint}?maxheight={self._max_height}&photoreference={ref}&key={self._get_api_key()}'
 
