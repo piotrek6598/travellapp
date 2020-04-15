@@ -43,23 +43,27 @@ try:
     tags = []
     rating = 0.0
     i = 2
-    while i < len(sys.argv) - 1:
+    while i < len(sys.argv) - 2:
         tags.append(sys.argv[i])
         i += 1
     if sys.argv[i] != 'none':
         rating = float(sys.argv[i])
+    i += 1
+    results = int(sys.argv[i])
     text = searcher.get_places_query(location.replace("_"," "), pages)
     data = json.loads(text)
     if len(tags) == 0 and rating == 0.0:
         print('Top results:')
-        printPlace(data[0])
-        printPlace(data[1])
-        printPlace(data[2])
+        i = 0
+        places = len(data)
+        while i < places and i < results:
+            printPlace(data[i])
+            i += 1
     else:
         places = len(data)
         i = 0
         good = 0
-        while i < places and good < 3:
+        while i < places and good < results:
             if (goodPlace(data[i], tags, rating)):
                 if good == 0:
                     print('Top results:')
@@ -71,7 +75,7 @@ try:
     
 
 except IndexError:
-    print("not enough arguments (excepted at least 2: [location], [any number of tags] [rating])")
+    print("not enough arguments (excepted at least 3: [location], [any number of tags] [rating] [results])")
 except ValueError:
     print("invalid literal for [rating] parameter")
 except KeyError:
