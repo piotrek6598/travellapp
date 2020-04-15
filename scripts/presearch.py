@@ -109,8 +109,3 @@ class Presearch:
 
         if processed is False:
             raise PresearchException("google-api delay too huge")
-
-
-c = Presearch()
-cd = c.get_places_query("warsaw", 3)
-a = 1
