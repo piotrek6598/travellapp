@@ -30,7 +30,7 @@ for ($i = 1; $i <= $stops; $i++) {
 }
 
 
-exec($command, $output, $ret);
+//exec($command, $output, $ret);
 
 /**
  * Printing information about error, if occurred.
@@ -53,7 +53,7 @@ echo "</header>";
  */
 for ($i = 3; $i <= $stops + 4; $i++) {
     $command = "python3 ./AttractionSearcher/main.py \"" . $output[$i] . "\" 4 2";
-    exec ($command, $attrOutput, $ret);
+    //exec ($command, $attrOutput, $ret);
     echo "<div class='tripStep'>";
     echo "<div class='cityName'>";
     echo ($i - 2) . ". " . $output[$i]. "<br>";
