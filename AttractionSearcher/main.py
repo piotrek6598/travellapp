@@ -1,7 +1,7 @@
 import json, sys
 import search
 
-def printPlace(place):
+def printPlace(searcher, place):
     if 'name' not in place:
         exit(1)
     print(place["name"])
@@ -9,8 +9,13 @@ def printPlace(place):
         exit(1)
     print('Address:', end = ' ')
     print(place["formatted_address"])
-    if 'photos' in place and len(place["photos"]) > 0:
-        print(place["photos"][0])
+    if 'photos' in place:
+        photo_ref = place['photos'][0]
+        if photo_ref:
+            place['photos'] = [searcher._get_photo(photo_ref)]
+            print(place['photos'][0]);
+        else:
+            place['photos'] = []
     if 'rating' not in place:
         exit(1)
     print('Google Maps rating:', end = ' ')
@@ -53,7 +58,7 @@ try:
         i = 0
         places = len(data)
         while i < places and i < results:
-            printPlace(data[i])
+            printPlace(searcher, data[i])
             i += 1
     else:
         places = len(data)
@@ -64,7 +69,7 @@ try:
                 if good == 0:
                     print('Top results:')
                 good += 1
-                printPlace(data[i])
+                printPlace(searcher, data[i])
             i += 1
         if good == 0:
             print('No results matching.')

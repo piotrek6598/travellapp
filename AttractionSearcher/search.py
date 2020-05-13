@@ -80,13 +80,6 @@ class Searcher:
         if next_page_token is not None and page_num > 1:
             self._retrieve_next_page(results, next_page_token, 2, page_num)
 
-        for res in results:
-            photo_ref = res['photos'][0] if 'photos' in res else None
-            if photo_ref is not None:  # replaces photo reference by a photo file. Field remains singleton-list.
-                res['photos'] = [self._get_photo(photo_ref)]
-            else:
-                res['photos'] = []
-
         with open(self._logs_path, 'a') as logs:
             logs.write(f"time = {time.ctime()}, get_places_query() ends\n")
             logs.write('\n')
