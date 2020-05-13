@@ -40,7 +40,7 @@ def goodPlace(place, tags, rating):
 try:
     searcher = search.Searcher()
     location = sys.argv[1]
-    pages = 3
+    pages = 1
     tags = []
     rating = 0.0
     i = 2
