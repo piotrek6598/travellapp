@@ -1,6 +1,6 @@
 from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.options import Options 
 import math
-from selenium.webdriver.chrome.options import Options
 #sortBy polecane - 1, cena - 2, ocena - 4
 #dates in format yyyy-mm-dd
 #ignores noChilds
@@ -8,10 +8,12 @@ from selenium.webdriver.chrome.options import Options
 
 
 def get_hotels(place, date1, date2, noAdults, noChilds, resultSize, maxPrice, sortBy):
+    
+    from selenium.webdriver.chrome.options import Options
     options = Options()
     options.headless = True
-    driver = Chrome(executable_path='/opt/chromedriver', options=options)
     
+    driver = Chrome(executable_path='/opt/chromedriver', options=options)
     trivago = 'https://www.trivago.pl'
     driver.get(trivago)
 
@@ -58,7 +60,7 @@ def get_hotels(place, date1, date2, noAdults, noChilds, resultSize, maxPrice, so
     url = url[:(index + 10)] + str(sortBy) + url[(index + 11):]
     #print(url)
     driver.get(url)
-    sleep(5)
+    sleep(3)
     hotelNames = driver.find_elements_by_xpath('//ol/li/div/article/div[1]/div[2]/div/div/h3/span')
                                                #/html/body/div[4]/main/div[1]/div/div[4]/div/div/div[2]/div[1]/div[1]/section/ol/li[1]/article/div[1]/div[2]/div/div/h3/span
     hotelTypes = driver.find_elements_by_xpath('//ol/li//p[@data-qa="accommodation-type"]')
@@ -70,7 +72,9 @@ def get_hotels(place, date1, date2, noAdults, noChilds, resultSize, maxPrice, so
                                                    #/html/body/div[4]/main/div[1]/div/div[4]/div/div/div[2]/div[1]/div[1]/section/ol/li[4]/div/article/div[1]/div[2]/div/div/div[2]/div/p
     hotelRates = driver.find_elements_by_xpath('//ol/li/div/article/div[1]/div[2]/div/div/button/span[1]/span[1]/span')
 
-    for i in range(resultSize):
+    print(url)
+    print(min(resultSize, len(hotelNames), len(hotelTypes), len(hotelPrices), len(hotelPhotos), len(hotelNames)))
+    for i in range(min(resultSize, len(hotelNames), len(hotelTypes), len(hotelPrices), len(hotelPhotos), len(hotelNames))):
         print(hotelNames[i].text)
         print(hotelTypes[i].text)
         print(hotelPhotos[i].get_attribute('src'))
@@ -78,4 +82,6 @@ def get_hotels(place, date1, date2, noAdults, noChilds, resultSize, maxPrice, so
         #print(hotelLocations[i].text)
         print(hotelRates[i].text)
 
-#get_hotels('Szczecin', '2020-07-28', '2020-07-30', 4, 0, 4 ,1000, 2)
+get_hotels('Szczecin', '2020-07-28', '2020-07-30', 4, 0, 20 ,1000, 4)
+
+
