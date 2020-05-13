@@ -13,7 +13,7 @@
     <header>
         Plan your trip
     </header>
-    <div id="searchTabs">
+    <div id="searchTabsPlanner">
         <button class="searchTabButton" id="routeSearchButton" onclick="changeSearchNightOption(false)">Only find best route</button>
         <button class="searchTabButton" id="staySearchButton" onclick="changeSearchNightOption(true)">Search for overnight stay</button>
     </div>
@@ -31,9 +31,6 @@
         <input type="button" class="numButton" onclick="changeAdultsNum(-1)" value="-">
         <div id="adults"></div>
         <input type="button" class="numButton" onclick="changeAdultsNum(1)" value="+">
-        <input type="button" class="numButton" onclick="changeChildrenNum(-1)" value="-">
-        <div id="children"></div>
-        <input type="button" class="numButton" onclick="changeChildrenNum(1)" value="+">
         <br>
         <input type="text" name="stopPlace1" class="stop1" placeholder="Stop 1" required/>
         <input type="number" min="0" name="stop1Nights" id="stop1Nights" placeholder="Stay (in days)" required/>
@@ -79,10 +76,9 @@
         <input type="hidden" name="staySearch" id="staySearch" value=""/> <!-- Hidden flag indicating night stay searching -->
         <input type="hidden" name="stops" id="totalStops" value=""/> <!-- Hidden field with number of active stops -->
         <input type="hidden" name="adultsNum" id="adultsNum" value=""/> <!-- Hidden field with number of adults -->
-        <input type="hidden" name="childrenNum" id="childrenNum" value=""/> <!-- Hidden field with number of children -->
         <input type="hidden" name="fastestWay" id="fastestWay" value=""/> <br> <!-- Hidden flag with search option -->
-        <input type="submit" name="planTrip" onclick="postStops()" value="Plan your trip"/>
-        <input type="reset" name="resetArgs" value="Reset trip"/>
+        <input type="submit" class="submitButtons" name="planTrip" onclick="postStops()" value="Plan your trip"/>
+        <input type="reset" class="submitButtons" name="resetArgs" value="Reset trip"/>
     </form>
 </div>
 
@@ -109,10 +105,13 @@
         <input type="date" name="checkInDate" class="dateInput" id="checkInDate" value="" required/>
         <label for="checkOutDate" class="dateInputLabel">Check out: </label>
         <input type="date" name="checkOutDate" class="dateInput" id="checkOutDate" value="" required/>
+        <input type="button" class="numButtonAttr" onclick="changeAdultsInAtrrForm(-1)" value="-">
+        <div id="adultsAttr"></div>
+        <input type="button" class="numButtonAttr" onclick="changeAdultsInAtrrForm(1)" value="+">
         <br>
         <input type="number" name="stayBudget" id="stayBudget" placeholder="Budget (in PLN)" min="0">
-        <input type="submit" name="searchAttractions" value="Search attractions" onclick="postAttraction()">
-        <input type="reset" name="resetArgs" id="resetAttrArgs" value="Clear" style="width: 150px"/>
+        <input type="submit" class="submitButtons" name="searchAttractions" value="Search attractions" onclick="postAttraction()">
+        <input type="reset"  class="submitButtons" name="resetArgs" id="resetAttrArgs" value="Clear" style="width: 150px"/>
     </form>
 </div>
 

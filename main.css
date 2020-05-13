@@ -2,7 +2,7 @@
  */
 body {
     display: grid;
-    grid-template-columns: 11fr 9fr;
+    grid-template-columns: 9fr 11fr;
     grid-column-gap: 20px;
     margin-left: 20px;
     margin-right: 20px;
@@ -56,6 +56,34 @@ input:required {
     background-color: #64aff1;
 }
 
+#searchTabsPlanner {
+    overflow: hidden;
+    display: none;
+    border: 1px solid #64aff1;
+    background-color: #2ee1f1;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#searchTabsPlanner button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    transition: 0.5s;
+    font-size: 18px;
+}
+
+#searchTabsPlanner button:hover {
+    background-color: #acbcf1;
+}
+
+#searchTabsPlanner button.active {
+    background-color: #64aff1;
+}
+
 #searchOptions {
     overflow: hidden;
     border: 1px solid #64aff1;
@@ -80,6 +108,18 @@ input:required {
     float: left;
     border: none;
     outline: none;
+    padding: 10px 15px;
+    font-size: 14px;
+}
+
+.submitButtons {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    outline: 5px solid gold;
     padding: 10px 15px;
     font-size: 14px;
 }
@@ -174,7 +214,7 @@ input:required {
 #tripForm .numButton {
     height: 40px;
     width: 40px;
-    border-radius: 50%;;
+    border-radius: 50%;
 }
 
 /** Detailed description of attractions searcher column.
@@ -195,6 +235,16 @@ input:required {
 
 #stayBudget {
     display: block;
+}
+
+#attractionsSearchForm .numButtonAttr {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+#attractionsSearchForm .submitButtons {
+    margin-right: 0px;
 }
 
 /** Detailed description of attractions list page.

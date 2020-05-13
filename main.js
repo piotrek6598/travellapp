@@ -22,6 +22,7 @@ let searchForNightStay = false;
  * @type {number}
  */
 let adults = 2;
+let attrFormAdults = 2;
 
 /**
  * Constant describing minimum number of adults used in stay searching.
@@ -33,24 +34,6 @@ const minAdults = 1;
  * @type {number}
  */
 const maxAdults = 9;
-
-/**
- * Variable describing number of children used in stay searching.
- * Value represents current user's choice. Default value is 0.
- * @type {number}
- */
-let children = 0;
-
-/**
- * Constant describing minimum number of children used in stay searching.
- * @type {number}
- */
-const minChildren = 0;
-/**
- * Constant describing maximum number of children used in stay searching.
- * @type {number}
- */
-let maxChildren = 5;
 
 /**
  * Flag indicating if search priority is 'fastest way'.
@@ -115,7 +98,7 @@ function postStops() {
     }
     document.getElementById("totalStops").value = stopCount;
     document.getElementById("adultsNum").value = adults;
-    document.getElementById("childrenNum").value = children;
+    //document.getElementById("childrenNum").value = children;
     document.getElementById("fastestWay").value = fastestWay;
     document.getElementById("staySearch").value = searchForNightStay;
 }
@@ -143,7 +126,7 @@ function changeStaySearchingVisibility() {
         document.getElementById("deptDate").value = "";
         document.getElementById("searchOptions").style.display = "none"; //na inherit
         document.getElementById("adults").style.display = "inline-block";
-        document.getElementById("children").style.display = "inline-block";
+        //document.getElementById("children").style.display = "inline-block";
         let numButtons = document.getElementsByClassName("numButton");
         for (let i = 0; i < numButtons.length; i++) {
             numButtons[i].style.display = "initial";
@@ -160,7 +143,7 @@ function changeStaySearchingVisibility() {
         document.getElementById("deptDate").removeAttribute("required");
         document.getElementById("searchOptions").style.display = "none";
         document.getElementById("adults").style.display = "none";
-        document.getElementById("children").style.display = "none";
+        //document.getElementById("children").style.display = "none";
         let numButtons = document.getElementsByClassName("numButton");
         for (let i = 0; i < numButtons.length; i++) {
             numButtons[i].style.display = "none";
@@ -172,14 +155,14 @@ function changeStaySearchingVisibility() {
             document.getElementById("stop".concat(str, "Nights")).removeAttribute("required");
         }
         adults = 2;
-        children = 0;
+        //children = 0;
         fastestWay = true;
         let optionButtons = document.getElementsByClassName("optionTabButton");
         for (let i = 0; i < optionButtons.length; i++)
             optionButtons[i].className = optionButtons[i].className.replace(" active", "");
         document.getElementById("fastestOption").className += " active";
         setAdults();
-        setChildren();
+        //setChildren();
     }
 }
 
@@ -197,6 +180,11 @@ function changeAttractionsSearchingVisibility() {
             dateInputLabels[i].style.display = "initial";
         document.getElementById("stayBudget").style.display = "block";
         document.getElementById("stayBudget").value = "";
+        document.getElementById("adultsAttr").style.display = "inline-block";
+        let numButtons = document.getElementsByClassName("numButtonAttr");
+        for (let i = 0; i < numButtons.length; i++)
+            numButtons[i].style.display = "initial";
+        setAttrFormAdults();
     } else {
         let dateInputs = document.getElementsByClassName("dateInput");
         let dateInputLabels = document.getElementsByClassName("dateInputLabel");
@@ -207,6 +195,11 @@ function changeAttractionsSearchingVisibility() {
         for (let i = 0; i < dateInputLabels.length; i++)
             dateInputLabels[i].style.display = "none";
         document.getElementById("stayBudget").style.display = "none";
+        document.getElementById("adultsAttr").style.display = "none";
+        let numButtons = document.getElementsByClassName("numButtonAttr");
+        for (let i = 0; i < numButtons.length; i++)
+            numButtons[i].style.display = "none";
+        attrFormAdults = 2;
     }
 }
 
@@ -242,14 +235,11 @@ function setAdults() {
         ad.innerText += "s";
 }
 
-/**
- * Displays information to user about currently selected number of children.
- */
-function setChildren() {
-    let childrenDiv = document.getElementById("children");
-    childrenDiv.innerText = children.toString().concat(" child");
-    if (children != 1)
-        childrenDiv.innerText += "ren";
+function setAttrFormAdults() {
+    let ad = document.getElementById("adultsAttr");
+    ad.innerText = attrFormAdults.toString().concat(" adult");
+    if (attrFormAdults > 1)
+        ad.innerText += "s";
 }
 
 /**
@@ -277,7 +267,7 @@ function initMainPage() {
     document.getElementById("checkInDate").min = localDate;
     document.getElementById("checkOutDate").min = localDate;
     setAdults();
-    setChildren();
+    //setChildren();
     changeStaySearchingVisibility();
     changeAttractionsSearchingVisibility();
 }
@@ -287,15 +277,10 @@ function getLocalDate() {
     return (new Date(Date.now() - tzoffset)).toISOString().split("T")[0];
 }
 
-/**
- * Handles click event on button changing children number.
- * Do nothing if new value would be small than @ref minChildren or greater than #ref maxChildren.
- * @param change - change of @ref children variable, allowed are 1 and -1.
- */
-function changeChildrenNum(change) {
-    if (children + change >= minChildren && children + change <= maxChildren)
-        children += change;
-    setChildren();
+function changeAdultsInAtrrForm(change) {
+    if (attrFormAdults + change >= minAdults && attrFormAdults + change <= maxAdults)
+        attrFormAdults += change;
+    setAttrFormAdults();
 }
 
 /**
