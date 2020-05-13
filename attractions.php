@@ -38,8 +38,7 @@ if ($bestHotel == "true") {
 $staySearchCommand = $staySearchCommand . " \"" . $checkIn . "\" \"" . $checkOut . "\" " . floor($budget / $stayNights) . " \"" .
     $place . "\" " . $adults;
 
-echo $staySearchCommand;
-//exec($command, $output, $ret);
+exec($command, $output, $ret);
 
 /**
  * Printing information about error, if occurred.
@@ -87,7 +86,6 @@ if ($staySearching == "true") {
 
     if ($stayRet != 0 || $results == 0) {
         echo "<div class='stayPlaceNotFound'>";
-        echo $stayRet . " " . $results . " " . count($stayOutput) . "<br>";
         echo "Sorry, we didn't find any stay place matching your criteria <br>";
         echo "</div>";
         exit;
