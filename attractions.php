@@ -25,7 +25,7 @@ $checkOut = $_POST['checkOutDate'];
 
 $command = "python3 ./AttractionSearcher/main.py \"" . $place . "\" " . $rating . " " . $limit;
 
-exec($command, $output, $ret);
+//exec($command, $output, $ret);
 
 /**
  * Printing information about error, if occurred.
