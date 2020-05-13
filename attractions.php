@@ -16,6 +16,13 @@ $place = $_POST['attractionsPlace'];
 $limit = $_POST['attractionsLimit'];
 $rating = $_POST['attractionsRating'];
 
+$staySearching = $_POST['staySearching'];
+$adults = $_POST['adultAttNum'];
+$bestHotel = $_POST['optionBestHotel'];
+$budget = $_POST['stayBudget'];
+$checkIn = $_POST['checkInDate'];
+$checkOut = $_POST['checkOutDate'];
+
 $command = "python3 ./AttractionSearcher/main.py \"" . $place . "\" " . $rating . " " . $limit;
 
 //exec($command, $output, $ret);
@@ -40,10 +47,6 @@ $maxi = 4 * $limit;
 if (count($output, COUNT_NORMAL) <= $maxi) {
     $maxi = count($output, COUNT_NORMAL) - 1;
 }
-echo "<div class='attractionPhoto'>";
-//echo "<img src='". $output[$i + 2]. "'>";
-echo "<img src=https://imgcy.trivago.com/c_lfill,d_dummy.jpeg,e_sharpen:60,f_auto,h_225,q_auto,w_225/itemimages/12/83/1283213_v4.jpeg>";
-echo "</div>";
 
 for ($i = 1; $i <= $maxi; $i += 4) {
     echo "<div class='attractionBox'>";

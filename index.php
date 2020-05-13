@@ -115,8 +115,9 @@
         <input type="button" class="numButtonAttr" onclick="changeAdultsInAtrrForm(1)" value="+">
         <br>
         <input type="number" name="stayBudget" id="stayBudget" placeholder="Budget (in PLN)" min="0">
-        <input type="hidden" name="adultAttNum" id="adultAttrNum"> <!-- Hidden field with number of adults -->
-        <input type="hidden" name="optionBestHotel" id="optionBestHotel"> <!-- Hidden flag with search option -->
+        <input type="hidden" name="staySearching" id="staySearching" value=""> <!-- Hidden flag with search mode -->
+        <input type="hidden" name="adultAttNum" id="adultAttrNum" value=""> <!-- Hidden field with number of adults -->
+        <input type="hidden" name="optionBestHotel" id="optionBestHotel" value=""> <!-- Hidden flag with search option -->
         <input type="submit" class="submitButtons" name="searchAttractions" value="Search attractions" onclick="postAttraction()">
         <input type="reset"  class="submitButtons" name="resetArgs" id="resetAttrArgs" value="Clear" style="width: 150px"/>
     </form>

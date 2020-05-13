@@ -117,6 +117,7 @@ function postAttraction() {
     }
     document.getElementById("adultAttrNum").value = attrFormAdults;
     document.getElementById("optionBestHotel").value = bestHotel;
+    document.getElementById("staySearching").value = attractionsWithStaySearch;
 }
 
 /**
@@ -274,6 +275,7 @@ function changeHotelSearchOption (best) {
  */
 function initMainPage() {
     searchForNightStay = false;
+    attractionsWithStaySearch = false;
     document.getElementById("routeSearchButton").className += " active";
     document.getElementById("fastestOption").className += " active";
     document.getElementById("onlyAttractionButton").className += " active";
