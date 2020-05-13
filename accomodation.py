@@ -62,7 +62,7 @@ def get_hotels(place, date1, date2, noAdults, noChilds, resultSize, maxPrice, so
     url = url[:(index + 10)] + str(sortBy) + url[(index + 11):]
     #print(url)
     driver.get(url)
-    sleep(5)
+    sleep(8)
     hotelNames = driver.find_elements_by_xpath('//ol/li/div/article/div[1]/div[2]/div/div/h3/span')
                                                #/html/body/div[4]/main/div[1]/div/div[4]/div/div/div[2]/div[1]/div[1]/section/ol/li[1]/article/div[1]/div[2]/div/div/h3/span
     hotelTypes = driver.find_elements_by_xpath('//ol/li//p[@data-qa="accommodation-type"]')

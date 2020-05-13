@@ -23,6 +23,11 @@ $budget = $_POST['stayBudget'];
 $checkIn = $_POST['checkInDate'];
 $checkOut = $_POST['checkOutDate'];
 
+$date1 = date_create($checkIn);
+$date2 = date_create($checkOut);
+$diff = date_diff($date1, $date2);
+$stayNights = $diff->days;
+
 $command = "python3 ./AttractionSearcher/main.py \"" . $place . "\" " . $rating . " " . $limit;
 $staySearchCommand = "python3 ./accomodation.py ";
 if ($bestHotel == "true") {
@@ -30,10 +35,11 @@ if ($bestHotel == "true") {
 } else {
     $staySearchCommand = $staySearchCommand . "2";
 }
-$staySearchCommand = $staySearchCommand . " \"" . $checkIn . "\" \"" . $checkOut . "\" " . $budget . " \"" .
+$staySearchCommand = $staySearchCommand . " \"" . $checkIn . "\" \"" . $checkOut . "\" " . floor($budget / $stayNights) . " \"" .
     $place . "\" " . $adults;
 
-exec($command, $output, $ret);
+echo $staySearchCommand;
+//exec($command, $output, $ret);
 
 /**
  * Printing information about error, if occurred.
@@ -81,6 +87,7 @@ if ($staySearching == "true") {
 
     if ($stayRet != 0 || $results == 0) {
         echo "<div class='stayPlaceNotFound'>";
+        echo $stayRet . " " . $results . " " . count($stayOutput) . "<br>";
         echo "Sorry, we didn't find any stay place matching your criteria <br>";
         echo "</div>";
         exit;
