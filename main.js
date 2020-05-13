@@ -4,21 +4,65 @@
  */
 let stopCount = 1;
 
-let maxStops = 5;
+/**
+ * Constant describing maximum number of active stops.
+ * @type {number}
+ */
+const maxStops = 5;
 
+/**
+ * Variable describing if searching for overnight stay is on.
+ * @type {boolean}
+ */
 let searchForNightStay = false;
 
+/**
+ * Variable describing number of adults used in stay searching.
+ * Value represents current user's choice. Default value is 2.
+ * @type {number}
+ */
 let adults = 2;
 
-let minAdults = 1;
-let maxAdults = 9;
+/**
+ * Constant describing minimum number of adults used in stay searching.
+ * @type {number}
+ */
+const minAdults = 1;
+/**
+ * Constant describing maximum number of adults used in stay searching.
+ * @type {number}
+ */
+const maxAdults = 9;
 
-let rooms = 1;
+/**
+ * Variable describing number of children used in stay searching.
+ * Value represents current user's choice. Default value is 0.
+ * @type {number}
+ */
+let children = 0;
 
-let minRooms = 1;
-let maxRooms = 5;
+/**
+ * Constant describing minimum number of children used in stay searching.
+ * @type {number}
+ */
+const minChildren = 0;
+/**
+ * Constant describing maximum number of children used in stay searching.
+ * @type {number}
+ */
+let maxChildren = 5;
 
+/**
+ * Flag indicating if search priority is 'fastest way'.
+ * @type {boolean}
+ */
 let fastestWay = true;
+
+/**
+ * Flag indicating if search for stay is performed with attractions searching.
+ * @type {boolean}
+ */
+let attractionsWithStaySearch = false;
 
 /** Increases number of active stops. Changes visibility of buttons.
  */
@@ -71,9 +115,14 @@ function postStops() {
     }
     document.getElementById("totalStops").value = stopCount;
     document.getElementById("adultsNum").value = adults;
-    document.getElementById("roomsNum").value = rooms;
+    document.getElementById("childrenNum").value = children;
+    document.getElementById("fastestWay").value = fastestWay;
+    document.getElementById("staySearch").value = searchForNightStay;
 }
 
+/**
+ * Replaces empty fields with default values before submitting form.
+ */
 function postAttraction() {
     if (document.getElementById("attractionsLimit").value === "") {
         document.getElementById("attractionsLimit").value = "5"
@@ -83,14 +132,18 @@ function postAttraction() {
     }
 }
 
+/**
+ * Change 'tabs' in searcher section. Displays form associated with chosen tab.
+ * Clears values except stops.
+ */
 function changeStaySearchingVisibility() {
     if (searchForNightStay) {
         document.getElementById("deptDate").style.display = "initial";
         document.getElementById("deptDate").required = true;
         document.getElementById("deptDate").value = "";
-        document.getElementById("searchOptions").style.display = "inherit";
-        document.getElementById("adults").style.display = "initial";
-        document.getElementById("rooms").style.display = "initial";
+        document.getElementById("searchOptions").style.display = "none"; //na inherit
+        document.getElementById("adults").style.display = "inline-block";
+        document.getElementById("children").style.display = "inline-block";
         let numButtons = document.getElementsByClassName("numButton");
         for (let i = 0; i < numButtons.length; i++) {
             numButtons[i].style.display = "initial";
@@ -107,7 +160,7 @@ function changeStaySearchingVisibility() {
         document.getElementById("deptDate").removeAttribute("required");
         document.getElementById("searchOptions").style.display = "none";
         document.getElementById("adults").style.display = "none";
-        document.getElementById("rooms").style.display = "none";
+        document.getElementById("children").style.display = "none";
         let numButtons = document.getElementsByClassName("numButton");
         for (let i = 0; i < numButtons.length; i++) {
             numButtons[i].style.display = "none";
@@ -119,17 +172,48 @@ function changeStaySearchingVisibility() {
             document.getElementById("stop".concat(str, "Nights")).removeAttribute("required");
         }
         adults = 2;
-        rooms = 1;
-        fastestWay = false;
+        children = 0;
+        fastestWay = true;
         let optionButtons = document.getElementsByClassName("optionTabButton");
         for (let i = 0; i < optionButtons.length; i++)
             optionButtons[i].className = optionButtons[i].className.replace(" active", "");
         document.getElementById("fastestOption").className += " active";
         setAdults();
-        setRooms();
+        setChildren();
     }
 }
 
+function changeAttractionsSearchingVisibility() {
+    if (attractionsWithStaySearch) {
+        let dateInputs = document.getElementsByClassName("dateInput");
+        let dateInputLabels = document.getElementsByClassName("dateInputLabel");
+        for (let i = 0; i < dateInputs.length; i++) {
+            dateInputs[i].style.display = "initial";
+            dateInputs[i].required = true;
+            dateInputs[i].value = "";
+        }
+        document.getElementById("checkOutDate").min = getLocalDate();
+        for (let i = 0; i < dateInputLabels.length; i++)
+            dateInputLabels[i].style.display = "initial";
+        document.getElementById("stayBudget").style.display = "block";
+        document.getElementById("stayBudget").value = "";
+    } else {
+        let dateInputs = document.getElementsByClassName("dateInput");
+        let dateInputLabels = document.getElementsByClassName("dateInputLabel");
+        for (let i = 0; i < dateInputs.length; i++) {
+            dateInputs[i].style.display = "none";
+            dateInputs[i].removeAttribute("required");
+        }
+        for (let i = 0; i < dateInputLabels.length; i++)
+            dateInputLabels[i].style.display = "none";
+        document.getElementById("stayBudget").style.display = "none";
+    }
+}
+
+/**
+ * Handles click event on tab in searcher section.
+ * @param val - new value for @ref searchForNightStay, allowed are true and false.
+ */
 function changeSearchNightOption(val) {
     searchForNightStay = val;
     let searchButtons = document.getElementsByClassName("searchTabButton");
@@ -139,6 +223,18 @@ function changeSearchNightOption(val) {
     changeStaySearchingVisibility();
 }
 
+function changeAttractionSearch(val) {
+    attractionsWithStaySearch = val;
+    let attractionSearchButtons = document.getElementsByClassName("attractionTabButton");
+    for (let i = 0; i < attractionSearchButtons.length; i++)
+        attractionSearchButtons[i].className = attractionSearchButtons[i].className.replace(" active", "");
+    event.currentTarget.className += " active";
+    changeAttractionsSearchingVisibility();
+}
+
+/**
+ * Displays information to user about currently selected number of adults.
+ */
 function setAdults() {
     let ad = document.getElementById("adults");
     ad.innerText = adults.toString().concat(" adult");
@@ -146,13 +242,20 @@ function setAdults() {
         ad.innerText += "s";
 }
 
-function setRooms() {
-    let room = document.getElementById("rooms");
-    room.innerText = rooms.toString().concat(" room");
-    if (rooms > 1)
-        room.innerText += "s";
+/**
+ * Displays information to user about currently selected number of children.
+ */
+function setChildren() {
+    let childrenDiv = document.getElementById("children");
+    childrenDiv.innerText = children.toString().concat(" child");
+    if (children != 1)
+        childrenDiv.innerText += "ren";
 }
 
+/**
+ * Handles click event on tab (representing search option) in overnight stay search mode.
+ * @param fastest - new value for @ref fastestWay, allowed are true and false.
+ */
 function changeSearchOption(fastest) {
     fastestWay = fastest;
     let optionButtons = document.getElementsByClassName("optionTabButton");
@@ -161,25 +264,67 @@ function changeSearchOption(fastest) {
     event.currentTarget.className += " active";
 }
 
+/**
+ * Inits start page.
+ */
 function initMainPage() {
     searchForNightStay = false;
     document.getElementById("routeSearchButton").className += " active";
     document.getElementById("fastestOption").className += " active";
+    document.getElementById("onlyAttractionButton").className += " active";
+    let localDate = getLocalDate();
+    document.getElementById("deptDate").min = localDate;
+    document.getElementById("checkInDate").min = localDate;
+    document.getElementById("checkOutDate").min = localDate;
     setAdults();
-    setRooms();
+    setChildren();
     changeStaySearchingVisibility();
+    changeAttractionsSearchingVisibility();
 }
 
-function changeRoomsNum(change) {
-    if (rooms + change >= minRooms && rooms + change <= maxRooms)
-        rooms += change;
-    setRooms();
+function getLocalDate() {
+    let tzoffset = (new Date()).getTimezoneOffset() * 60000;
+    return (new Date(Date.now() - tzoffset)).toISOString().split("T")[0];
 }
 
+/**
+ * Handles click event on button changing children number.
+ * Do nothing if new value would be small than @ref minChildren or greater than #ref maxChildren.
+ * @param change - change of @ref children variable, allowed are 1 and -1.
+ */
+function changeChildrenNum(change) {
+    if (children + change >= minChildren && children + change <= maxChildren)
+        children += change;
+    setChildren();
+}
+
+/**
+ * Handles click event on button changing adults number.
+ * Do nothing if new value would be small than @ref minAdults or greater than #ref maxAdults.
+ * @param change - change of @ref adults variable, allowed are 1 and -1.
+ */
 function changeAdultsNum(change) {
     if (adults + change >= minAdults && adults + change <= maxAdults)
         adults += change;
     setAdults();
 }
 
+function setCheckOutMinDay() {
+    console.log("OK");
+    console.log(document.getElementById("checkInDate").value);
+    let d = new Date(document.getElementById("checkInDate").value);
+    d.setDate(d.getDate() + 1);
+    document.getElementById("checkOutDate").min = d.toISOString().split("T")[0];
+}
+
+function resetMinDates() {
+    document.getElementById("checkInDate").min = getLocalDate();
+    document.getElementById("checkOutDate").min = getLocalDate();
+    console.log(getLocalDate());
+    console.log(document.getElementById("checkInDate").min);
+    console.log(document.getElementById("checkOutDate").min);
+}
+
 initMainPage();
+document.getElementById("checkInDate").addEventListener("input", setCheckOutMinDay);
+document.getElementById("resetAttrArgs").addEventListener("click", resetMinDates);
