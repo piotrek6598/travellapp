@@ -108,6 +108,11 @@ if ($staySearching == "true") {
         echo "</div>";
         echo "</div>";
     }
+
+    echo "<button type='button' class='bookButton'>";
+    echo "<a href='" . $bookingLink . "' target='_blank'>";
+    echo "Book your stay";
+    echo "</a></button>";
 }
 
 ?>

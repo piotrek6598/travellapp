@@ -447,3 +447,19 @@ input:required {
     display: block;
     font-weight: bold;
 }
+
+.bookButton {
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+    height: 75px;
+    margin-bottom: 25px;
+    font-size: 50px;
+    background-color: blue;
+}
+
+.bookButton a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
