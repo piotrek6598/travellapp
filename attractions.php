@@ -16,6 +16,9 @@ $place = $_POST['attractionsPlace'];
 $limit = $_POST['attractionsLimit'];
 $rating = $_POST['attractionsRating'];
 
+/**
+ * Variables representing parameters for stay searching.
+ */
 $staySearching = $_POST['staySearching'];
 $adults = $_POST['adultAttNum'];
 $bestHotel = $_POST['optionBestHotel'];
@@ -29,14 +32,6 @@ $diff = date_diff($date1, $date2);
 $stayNights = $diff->days;
 
 $command = "python3 ./AttractionSearcher/main.py \"" . $place . "\" " . $rating . " " . $limit;
-$staySearchCommand = "python3 ./accomodation.py ";
-if ($bestHotel == "true") {
-    $staySearchCommand = $staySearchCommand . "4";
-} else {
-    $staySearchCommand = $staySearchCommand . "2";
-}
-$staySearchCommand = $staySearchCommand . " \"" . $checkIn . "\" \"" . $checkOut . "\" " . floor($budget / $stayNights) . " \"" .
-    $place . "\" " . $adults;
 
 exec($command, $output, $ret);
 
@@ -77,12 +72,26 @@ for ($i = 1; $i <= $maxi; $i += 4) {
     echo "</div>";
 }
 
+/**
+ * Performing stay search if it's requested.
+ */
 if ($staySearching == "true") {
+
+    $staySearchCommand = "python3 ./accomodation.py ";
+    if ($bestHotel == "true") {
+        $staySearchCommand = $staySearchCommand . "4";
+    } else {
+        $staySearchCommand = $staySearchCommand . "2";
+    }
+    $staySearchCommand = $staySearchCommand . " \"" . $checkIn . "\" \"" . $checkOut . "\" " . floor($budget / $stayNights) . " \"" .
+        $place . "\" " . $adults;
 
     exec($staySearchCommand, $stayOutput, $stayRet);
 
-    $bookingLink = $stayOutput[0];
-    $results = $stayOutput[1];
+    if ($stayRet == 0) {
+        $bookingLink = $stayOutput[0];
+        $results = $stayOutput[1];
+    }
 
     if ($stayRet != 0 || $results == 0) {
         echo "<div class='stayPlaceNotFound'>";

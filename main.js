@@ -47,6 +47,10 @@ let fastestWay = true;
  */
 let attractionsWithStaySearch = false;
 
+/**
+ * Flag indicating if hotel search priority is 'best rating'.
+ * @type {boolean}
+ */
 let bestHotel = true;
 
 /** Increases number of active stops. Changes visibility of buttons.
@@ -171,6 +175,10 @@ function changeStaySearchingVisibility() {
     }
 }
 
+/**
+ * Change 'tabs' in attraction searcher section. Displays form associated with chosen tab.
+ * Clears values except place, attraction limit and minimum attraction rating.
+ */
 function changeAttractionsSearchingVisibility() {
     if (attractionsWithStaySearch) {
         let dateInputs = document.getElementsByClassName("dateInput");
@@ -223,6 +231,10 @@ function changeSearchNightOption(val) {
     changeStaySearchingVisibility();
 }
 
+/**
+ * Handles click event on tab in attraction searcher section.
+ * @param val - new value for @ref attractionsWithStaySearch, allowed are true and false.
+ */
 function changeAttractionSearch(val) {
     attractionsWithStaySearch = val;
     let attractionSearchButtons = document.getElementsByClassName("attractionTabButton");
@@ -242,6 +254,9 @@ function setAdults() {
         ad.innerText += "s";
 }
 
+/**
+ * Displays information to user about currently selected number of adults in attraction section.
+ */
 function setAttrFormAdults() {
     let ad = document.getElementById("adultsAttr");
     ad.innerText = attrFormAdults.toString().concat(" adult");
@@ -261,6 +276,11 @@ function changeSearchOption(fastest) {
     event.currentTarget.className += " active";
 }
 
+/**
+ * Handles click event on tab (representing search option) in attraction section
+ * in 'attraction with overnight stay' tab.
+ * @param fastest - new value for @ref bestHotel, allowed are true and false.
+ */
 function changeHotelSearchOption (best) {
     bestHotel = best;
     let optionButtons = document.getElementsByClassName("optionHotelTabButton");
@@ -291,11 +311,20 @@ function initMainPage() {
     console.log(bestHotel);
 }
 
+/**
+ * Prepares ISO string with current user date.
+ * @returns {string} - string representing date.
+ */
 function getLocalDate() {
     let tzoffset = (new Date()).getTimezoneOffset() * 60000;
     return (new Date(Date.now() - tzoffset)).toISOString().split("T")[0];
 }
 
+/**
+ * Handles click event on button changing adults number in attraction searcher form.
+ * Do nothing if new value would be small than @ref minAdults or greater than #ref maxAdults.
+ * @param change - change of @ref attrFormAdults variable, allowed are 1 and -1.
+ */
 function changeAdultsInAtrrForm(change) {
     if (attrFormAdults + change >= minAdults && attrFormAdults + change <= maxAdults)
         attrFormAdults += change;
@@ -303,7 +332,7 @@ function changeAdultsInAtrrForm(change) {
 }
 
 /**
- * Handles click event on button changing adults number.
+ * Handles click event on button changing adults number in trip form.
  * Do nothing if new value would be small than @ref minAdults or greater than #ref maxAdults.
  * @param change - change of @ref adults variable, allowed are 1 and -1.
  */
@@ -313,6 +342,9 @@ function changeAdultsNum(change) {
     setAdults();
 }
 
+/**
+ * Sets minimum required check-out day.
+ */
 function setCheckOutMinDay() {
     console.log("OK");
     console.log(document.getElementById("checkInDate").value);
@@ -321,6 +353,9 @@ function setCheckOutMinDay() {
     document.getElementById("checkOutDate").min = d.toISOString().split("T")[0];
 }
 
+/**
+ * Clears fields with dates in attraction form, sets correctly minimum required date.
+ */
 function resetMinDates() {
     document.getElementById("checkInDate").min = getLocalDate();
     document.getElementById("checkOutDate").min = getLocalDate();
