@@ -1,5 +1,6 @@
 from selenium.webdriver import Chrome
 import math
+from selenium.webdriver.chrome.options import Options
 #sortBy polecane - 1, cena - 2, ocena - 4
 #dates in format yyyy-mm-dd
 #ignores noChilds
@@ -7,7 +8,10 @@ import math
 
 
 def get_hotels(place, date1, date2, noAdults, noChilds, resultSize, maxPrice, sortBy):
-    driver = Chrome(executable_path='/opt/chromedriver')
+    options = Options()
+    options.headless = True
+    driver = Chrome(executable_path='/opt/chromedriver', options=options)
+    
     trivago = 'https://www.trivago.pl'
     driver.get(trivago)
 
