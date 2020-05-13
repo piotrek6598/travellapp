@@ -74,4 +74,4 @@ def get_hotels(place, date1, date2, noAdults, noChilds, resultSize, maxPrice, so
         #print(hotelLocations[i].text)
         print(hotelRates[i].text)
 
-#get_hotels('Szczecin', '2020-07-28', '2020-07-30', 4, 0, 4 ,1000, 2)
+get_hotels(sys.argv[5], sys.argv[2], sys.argv[3], 4, 0, 1 ,int(sys.argv[4]), sys.argv[1])
