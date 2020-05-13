@@ -91,6 +91,11 @@
         <button class="attractionTabButton" id="onlyAttractionButton" onclick="changeAttractionSearch(false)">Only attractions</button>
         <button class="attractionTabButton" id="attractionWithStayButton" onclick="changeAttractionSearch(true)">Attractions with stay possibilities</button>
     </div>
+    <div id="searchHotelOptions">
+        <div class="optionSearchMsg">Select preferred hotel: </div>
+        <button class="optionHotelTabButton" id="bestHotelOption" onclick="changeHotelSearchOption(true)">Best rating hotels</button>
+        <button class="optionHotelTabButton" id="cheapestHotelOption" onclick="changeHotelSearchOption(false)">Cheapest hotels</button>
+    </div>
     <form action="attractions.php" method="post" id="attractionsSearchForm" target="_blank">
         <label></label>
         <input type="text" name="attractionsPlace" placeholder="Place" required/>
@@ -110,6 +115,8 @@
         <input type="button" class="numButtonAttr" onclick="changeAdultsInAtrrForm(1)" value="+">
         <br>
         <input type="number" name="stayBudget" id="stayBudget" placeholder="Budget (in PLN)" min="0">
+        <input type="hidden" name="adultAttNum" id="adultAttrNum"> <!-- Hidden field with number of adults -->
+        <input type="hidden" name="optionBestHotel" id="optionBestHotel"> <!-- Hidden flag with search option -->
         <input type="submit" class="submitButtons" name="searchAttractions" value="Search attractions" onclick="postAttraction()">
         <input type="reset"  class="submitButtons" name="resetArgs" id="resetAttrArgs" value="Clear" style="width: 150px"/>
     </form>

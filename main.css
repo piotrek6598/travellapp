@@ -132,6 +132,14 @@ input:required {
     background-color: #64aff1;
 }
 
+#searchHotelOptions button:hover {
+    background-color: #acbcf1;
+}
+
+#searchHotelOptions button.active {
+    background-color: #64aff1;
+}
+
 #children {
     width: 115px;
     text-align: center;
@@ -245,6 +253,34 @@ input:required {
 
 #attractionsSearchForm .submitButtons {
     margin-right: 0px;
+}
+
+#searchHotelOptions {
+    overflow: hidden;
+    border: 1px solid #64aff1;
+    background-color: #2ee1f1;
+}
+
+#searchHotelOptions button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px 15px;
+    transition: 0.5s;
+    font-size: 14px;
+}
+
+#searchHotelOptions .optionSearchMsg {
+    background-color: red;
+    color: white;
+    font-weight: bold;
+    float: left;
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    font-size: 14px;
 }
 
 /** Detailed description of attractions list page.

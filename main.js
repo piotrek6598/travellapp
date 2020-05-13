@@ -47,6 +47,8 @@ let fastestWay = true;
  */
 let attractionsWithStaySearch = false;
 
+let bestHotel = true;
+
 /** Increases number of active stops. Changes visibility of buttons.
  */
 function addStop() {
@@ -113,6 +115,8 @@ function postAttraction() {
     if (document.getElementById("attractionsRating").value === "") {
         document.getElementById("attractionsRating").value = "3.0"
     }
+    document.getElementById("adultAttrNum").value = attrFormAdults;
+    document.getElementById("optionBestHotel").value = bestHotel;
 }
 
 /**
@@ -181,6 +185,7 @@ function changeAttractionsSearchingVisibility() {
         document.getElementById("stayBudget").style.display = "block";
         document.getElementById("stayBudget").value = "";
         document.getElementById("adultsAttr").style.display = "inline-block";
+        document.getElementById("searchHotelOptions").style.display = "inherit";
         let numButtons = document.getElementsByClassName("numButtonAttr");
         for (let i = 0; i < numButtons.length; i++)
             numButtons[i].style.display = "initial";
@@ -196,6 +201,7 @@ function changeAttractionsSearchingVisibility() {
             dateInputLabels[i].style.display = "none";
         document.getElementById("stayBudget").style.display = "none";
         document.getElementById("adultsAttr").style.display = "none";
+        document.getElementById("searchHotelOptions").style.display = "none";
         let numButtons = document.getElementsByClassName("numButtonAttr");
         for (let i = 0; i < numButtons.length; i++)
             numButtons[i].style.display = "none";
@@ -254,6 +260,15 @@ function changeSearchOption(fastest) {
     event.currentTarget.className += " active";
 }
 
+function changeHotelSearchOption (best) {
+    bestHotel = best;
+    let optionButtons = document.getElementsByClassName("optionHotelTabButton");
+    for (let i = 0; i < optionButtons.length; i++)
+        optionButtons[i].className = optionButtons[i].className.replace(" active", "");
+    event.currentTarget.className += " active";
+    console.log(bestHotel);
+}
+
 /**
  * Inits start page.
  */
@@ -262,6 +277,7 @@ function initMainPage() {
     document.getElementById("routeSearchButton").className += " active";
     document.getElementById("fastestOption").className += " active";
     document.getElementById("onlyAttractionButton").className += " active";
+    document.getElementById("bestHotelOption").className += " active";
     let localDate = getLocalDate();
     document.getElementById("deptDate").min = localDate;
     document.getElementById("checkInDate").min = localDate;
@@ -270,6 +286,7 @@ function initMainPage() {
     //setChildren();
     changeStaySearchingVisibility();
     changeAttractionsSearchingVisibility();
+    console.log(bestHotel);
 }
 
 function getLocalDate() {
