@@ -4,7 +4,7 @@ Aplikacja turystyczna “Na krańcu świata” jest narzędziem pomagającym zap
 
 ## Uruchomienie własnej kopii strony
 
-Do postawienia strony potrzebna jest maszyna linuxowa z serwerem www i php. Dodatkowo należy zainstalować interpreter pythona3 wraz z menedżerem pakietów pip. Do poprawnego działania strony potrzebne są pakiety *googlemaps*, *PyAML*, *requests*, *numpy* i *selenium*.
+Do postawienia strony potrzebna jest maszyna linuxowa z serwerem www i php. Dodatkowo należy zainstalować interpreter pythona3 wraz z menedżerem pakietów pip. Do poprawnego działania strony potrzebne są pakiety *googlemaps*, *PyAML*, *requests*, *numpy* i *selenium*. Dodatkowo do prawidłowego działania wyszukiwarki miejsc noclegowych potrzebna jest przeglądarka Chrome, a także Chromedriver do pobrania ze [strony](https://chromedriver.chromium.org/). Dodatkowo w pliku *accomodation.py* należy w 17. linijce ustawić ścieżkę do pobranego Chromedrivera. 
 
 Przykładowo w katalogu domowym należy
 ```
