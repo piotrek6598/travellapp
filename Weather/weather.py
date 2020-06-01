@@ -2,6 +2,7 @@ import requests
 import sys
 import json
 import pycountry
+from translate import Translator
 
 def concatArgs():
     i = 1
@@ -50,7 +51,8 @@ def getWeather(weather):
     print (toCelsius(weather["main"]["temp"]))
     print (weather["wind"]["speed"])
     country = pycountry.countries.get(alpha_2 = weather["sys"]["country"]).name
-    print(country)
+    translator= Translator(to_lang="pl")
+    print(translator.translate(country))
     return 0
 
 # My API key.
