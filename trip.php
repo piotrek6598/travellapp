@@ -10,6 +10,8 @@
 
 <?php
 
+include 'utils.php';
+
 function getMonthDays($year, $month)
 {
     if ($month == 1 || $month == 3 || $month == 5 || $month == 7
@@ -118,7 +120,9 @@ echo "</header>";
  */
 for ($i = 3; $i <= $stops + 4; $i++) {
     $command = "python3 ./AttractionSearcher/main.py \"" . $output[$i] . "\" 4 2";
+    $weatherCommand = getWeatherCommand($output[$i]);
     exec ($command, $attrOutput, $ret);
+    exec($weatherCommand, $weatherOutput, $weatherRet);
     echo "<div class='tripStep'>";
     echo "<div class='cityName'>";
     echo ($i - 2) . ". " . $output[$i] . "<br>";
@@ -138,7 +142,13 @@ for ($i = 3; $i <= $stops + 4; $i++) {
             echo "</div>";
         }
     }
+    if ($weatherRet == 0) {
+        echo "<div class='widgetBox positionInTripBox'>";
+        printWeatherContent($weatherOutput, $output[$i]);
+        echo "</div>";
+    }
     unset($attrOutput);
+    unset($weatherOutput);
     echo "</div>";
 }
 

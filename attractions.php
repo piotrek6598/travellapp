@@ -8,6 +8,9 @@
 
 <body class="attractionsBody">
 <?php
+
+include 'utils.php';
+
 /**
  * Variables representing place where attractions are searched, limit
  * attractions and minimum rating of attraction.
@@ -47,6 +50,9 @@ if ($ret == 1) {
     exit;
 }
 
+$weatherCommand = getWeatherCommand($place);
+exec($weatherCommand, $weatherOutput, $weatherRet);
+
 echo "<header>";
 echo "List of recommended attractions in " . $place;
 echo "</header>";
@@ -67,6 +73,11 @@ for ($i = 1; $i <= $maxi; $i += 4) {
     if ($output[$i + 2] != "") {
         echo "<div class='attractionPhoto'>";
         echo "<img src='" . $output[$i + 2] . "' alt=''>";
+        echo "</div>";
+    }
+    if ($weatherRet == 0 && $i == 1) {
+        echo "<div class='widgetBox positionInAttractionSearch scale15'>";
+        printWeatherContent($weatherOutput, $place);
         echo "</div>";
     }
     echo "</div>";

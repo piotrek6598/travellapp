@@ -338,20 +338,20 @@ input:required {
     display: block;
     height: 200px;
     width: 120px;
-    left: 450px;
+    left: 400px;
     position: absolute;
 }
 
 .cityName {
-    position: relative;
-    top: 90px;
+    position: absolute;
+    top: 75px;
     width: 280px;
     display: inline-block;
 }
 
 .cityDesc {
-    position: relative;
-    top: 30px;
+    position: absolute;
+    top: 120px;
     margin-left: 30px;
     width: 280px;
     display: block;
@@ -376,8 +376,9 @@ input:required {
     font-weight: bold;
     font-size: 25px;
     position: relative;
-    display: inline-block;
-    top: 60px;
+    display: block;
+    top: 20px;
+    width: 400px;
 }
 
 .attractionPhoto {
@@ -391,7 +392,6 @@ input:required {
 .attractionDesc {
     display: inherit;
     position: relative;
-    top: 20px;
     width: 400px;
 }
 
@@ -462,4 +462,51 @@ input:required {
     text-decoration: none;
     color: white;
     font-weight: bold;
+}
+
+.positionInTripBox {
+    position: absolute;
+    left: 850px;
+}
+
+.positionInAttractionSearch {
+    position: absolute;
+    left: 900px;
+}
+
+.scale15 {
+    transform: scale(1.5);
+    transform-origin: top left;
+}
+
+.widgetBox {
+    width: 200px;
+    height: 200px;
+    background-image: linear-gradient(to bottom, #18097c , #5d95f1);
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.widgetPlace {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.widgetRow {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.widgetImg {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: yellow;
+    font-size: 40px;
+    height: 50px;
 }

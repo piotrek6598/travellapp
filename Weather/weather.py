@@ -50,9 +50,10 @@ def getWeather(weather):
     print (weather["weather"][0]["description"])
     print (toCelsius(weather["main"]["temp"]))
     print (weather["wind"]["speed"])
-    country = pycountry.countries.get(alpha_2 = weather["sys"]["country"]).name
-    translator= Translator(to_lang="pl")
-    print(translator.translate(country))
+    #country = pycountry.countries.get(alpha_2 = weather["sys"]["country"]).name
+    #translator= Translator(to_lang="pl")
+    #print(translator.translate(country))
+    print(weather["sys"]["country"])
     return 0
 
 # My API key.
