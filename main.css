@@ -510,3 +510,30 @@ input:required {
     font-size: 40px;
     height: 50px;
 }
+
+.mszWarning {
+    position: relative;
+    display: inline-block;
+    left: 35%;
+}
+
+.mszWarning .warningText {
+    visibility: hidden;
+    width: 400px;
+    background-color: red;
+    color: white;
+    text-align: left;
+    padding: 5px 10px;
+    border-radius: 8px;
+    position: absolute;
+    top: 10px;
+    left: 60px;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 2s;
+}
+
+.mszWarning:hover .warningText {
+    visibility: visible;
+    opacity: 1;
+}
