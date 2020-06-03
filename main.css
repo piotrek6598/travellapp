@@ -7,6 +7,8 @@ body {
     margin-left: 20px;
     margin-right: 20px;
     font-size: 20px;
+    font-family: sans-serif;
+    background-image: url("small_tiles.png");
 }
 
 header {
@@ -17,6 +19,13 @@ header {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+#main {
+    text-align: center;
+    font-size: 60px;
+}
+
+
 
 input {
     height: 50px;
@@ -31,8 +40,7 @@ input:required {
 
 #searchTabs {
     overflow: hidden;
-    border: 1px solid #64aff1;
-    background-color: #2ee1f1;
+    background-color: lightgray;
     margin-top: 5px;
     margin-bottom: 5px;
 }
@@ -60,7 +68,7 @@ input:required {
     overflow: hidden;
     display: none;
     border: 1px solid #64aff1;
-    background-color: #2ee1f1;
+    background-color: lightgray;
     margin-top: 5px;
     margin-bottom: 5px;
 }
@@ -113,13 +121,12 @@ input:required {
 }
 
 .submitButtons {
-    background-color: red;
+    background-color: #64aff1;
     color: white;
     font-weight: bold;
     text-align: center;
     border: none;
     cursor: pointer;
-    outline: 5px solid gold;
     padding: 10px 15px;
     font-size: 14px;
 }
@@ -188,7 +195,7 @@ input:required {
 }
 
 #tripForm a:hover {
-    color: red;
+    color: darkgrey;
     text-decoration: underline;
 }
 
@@ -257,8 +264,7 @@ input:required {
 
 #searchHotelOptions {
     overflow: hidden;
-    border: 1px solid #64aff1;
-    background-color: #2ee1f1;
+    background-color: lightgray;
 }
 
 #searchHotelOptions button {
@@ -273,7 +279,7 @@ input:required {
 }
 
 #searchHotelOptions .optionSearchMsg {
-    background-color: red;
+    background-color: gray;
     color: white;
     font-weight: bold;
     float: left;
