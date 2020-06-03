@@ -143,9 +143,11 @@ if ($staySearching == "true") {
         echo "<div class='stayPlacePrice'>";
         echo "Price: " . $stayOutput[$i + 3] . " per day<br>";
         echo "</div>";
-        echo "<div class='stayPlacePhoto'>";
-        echo "<img src='" . $stayOutput[$i + 2] . "' alt=''>";
-        echo "</div>";
+        if ($stayOutput[$i + 2] != "") {
+            echo "<div class='stayPlacePhoto'>";
+            echo "<img src='" . $stayOutput[$i + 2] . "' alt=''>";
+            echo "</div>";
+        }
         echo "</div>";
     }
 
