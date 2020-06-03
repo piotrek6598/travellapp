@@ -60,8 +60,7 @@ echo "List of recommended attractions in " . $place;
 echo "</header>";
 
 if ($weatherRet == 0) {
-    //$warningCommand = "python3 ./safety.py \"" . $weatherOutput[4] . "\"";
-    $warningCommand = "python3 ./safety.py \"niemcy\"";
+    $warningCommand = "python3 ./safety.py \"" . $weatherOutput[4] . "\"";
     exec($warningCommand, $warningOutput, $warningRet);
     if ($warningRet == 0) {
         echo "<div class='mszWarning'>";
@@ -115,7 +114,6 @@ if ($staySearching == "true") {
         $place . "\" " . $adults;
 
     exec($staySearchCommand, $stayOutput, $stayRet);
-
     if ($stayRet == 0) {
         $bookingLink = $stayOutput[0];
         $results = $stayOutput[1];
