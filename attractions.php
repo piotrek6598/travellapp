@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Attractions list</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -58,10 +59,20 @@ echo "<header>";
 echo "List of recommended attractions in " . $place;
 echo "</header>";
 
-echo "<div class='mszWarning'>";
-echo "<i class='fa fa-exclamation-circle warningIcon' style='font-size: 60px; color: red'></i>";
-echo "<span class='warningText'>My warning</span>";
-echo "</div>";
+if ($weatherRet == 0) {
+    //$warningCommand = "python3 ./safety.py \"" . $weatherOutput[4] . "\"";
+    $warningCommand = "python3 ./safety.py \"niemcy\"";
+    exec($warningCommand, $warningOutput, $warningRet);
+    if ($warningRet == 0) {
+        echo "<div class='mszWarning'>";
+        echo "<i class='fa fa-exclamation-circle warningIcon' style='font-size: 60px; color: red'></i>";
+        echo "<span class='warningText'>";
+        for ($i = 0; $i < count($warningOutput); $i++)
+            echo $warningOutput[$i];
+        echo "</span>";
+        echo "</div>";
+    }
+}
 
 $maxi = 4 * $limit;
 if (count($output, COUNT_NORMAL) <= $maxi) {

@@ -2,7 +2,7 @@ import requests
 import sys
 import json
 
-with open('countriesDictionary.txt') as json_file:
+with open('Weather/countriesDictionary.txt') as json_file:
     countries = json.load(json_file)
 
 def getCountryName(iso):
