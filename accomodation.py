@@ -14,7 +14,7 @@ def get_hotels(place, date1, date2, noAdults, noChilds, resultSize, maxPrice, so
     options = Options()
     options.headless = True
 
-    driver = Chrome(executable_path='/home/piotr/chromedriver', options=options)
+    driver = Chrome(executable_path='/opt/chromedriver', options=options)
     trivago = 'https://www.trivago.pl'
     driver.get(trivago)
 
@@ -69,11 +69,14 @@ def get_hotels(place, date1, date2, noAdults, noChilds, resultSize, maxPrice, so
     hotelRates = driver.find_elements_by_xpath('//ol/li/div/article/div[1]/div[2]/div/div/button/span[1]/span[1]/span')
 
     print(url)
-    print(min(resultSize, len(hotelNames), len(hotelTypes), len(hotelPrices), len(hotelPhotos), len(hotelNames)))
-    for i in range(min(resultSize, len(hotelNames), len(hotelTypes), len(hotelPrices), len(hotelPhotos), len(hotelNames))):
+    print(min(resultSize, len(hotelNames), len(hotelTypes), len(hotelPrices), len(hotelNames)))
+    for i in range(min(resultSize, len(hotelNames), len(hotelTypes), len(hotelPrices), len(hotelNames))):
         print(hotelNames[i].text)
         print(hotelTypes[i].text)
-        print(hotelPhotos[i].get_attribute('src'))
+        if (i >= len(hotelPhotos)):
+            print()
+        else:
+            print(hotelPhotos[i].get_attribute('src'))
         print(hotelPrices[i].text)
         print(hotelRates[i].text)
 
