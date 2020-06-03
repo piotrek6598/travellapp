@@ -60,16 +60,18 @@ echo "List of recommended attractions in " . $place;
 echo "</header>";
 
 if ($weatherRet == 0) {
-    $warningCommand = "python3 ./safety.py \"" . $weatherOutput[4] . "\"";
-    exec($warningCommand, $warningOutput, $warningRet);
-    if ($warningRet == 0) {
-        echo "<div class='mszWarning'>";
-        echo "<i class='fa fa-exclamation-circle warningIcon' style='font-size: 60px; color: red'></i>";
-        echo "<span class='warningText'>";
-        for ($i = 0; $i < count($warningOutput); $i++)
-            echo $warningOutput[$i];
-        echo "</span>";
-        echo "</div>";
+    if ($weatherOutput[4] != "Polska") {
+        $warningCommand = "python3 ./safety.py \"" . $weatherOutput[4] . "\"";
+        exec($warningCommand, $warningOutput, $warningRet);
+        if ($warningRet == 0) {
+            echo "<div class='mszWarning'>";
+            echo "<i class='fa fa-exclamation-circle warningIcon' style='font-size: 60px; color: red'></i>";
+            echo "<span class='warningText'>";
+            for ($i = 0; $i < count($warningOutput); $i++)
+                echo $warningOutput[$i];
+            echo "</span>";
+            echo "</div>";
+        }
     }
 }
 
