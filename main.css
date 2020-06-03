@@ -514,26 +514,29 @@ input:required {
 .mszWarning {
     position: relative;
     display: inline-block;
-    left: 35%;
+    left: 550px;
+    width: 60px;
 }
 
 .mszWarning .warningText {
     visibility: hidden;
-    width: 400px;
-    background-color: red;
-    color: white;
+    width: 1300px;
+    background-color: white;
+    color: black;
     text-align: left;
     padding: 5px 10px;
     border-radius: 8px;
     position: absolute;
-    top: 10px;
-    left: 60px;
+    top: 60px;
+    left: -500px;
     z-index: 1;
     opacity: 0;
     transition: opacity 2s;
+    transform: scale(0);
 }
 
 .mszWarning:hover .warningText {
     visibility: visible;
     opacity: 1;
+    transform: scale(1);
 }
