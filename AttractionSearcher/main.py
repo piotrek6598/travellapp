@@ -16,6 +16,8 @@ def printPlace(searcher, place):
             print(place['photos'][0]);
         else:
             place['photos'] = []
+    else:
+        print()
     if 'rating' not in place:
         exit(1)
     print('Google Maps rating:', end = ' ')
