@@ -7,6 +7,8 @@ from time import sleep
 def get_safety(place):
     options = Options()
     options.headless = True
+    place = place.lower()
+    place = place.replace(' ', '-')
 
     driver = Chrome(executable_path='/home/piotr/chromedriver', options=options)
     gov = 'https://www.gov.pl/web/dyplomacja/'
