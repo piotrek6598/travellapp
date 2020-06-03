@@ -1,9 +1,15 @@
 import requests
 import sys
 import json
-import pycountry
-from translate import Translator
 
+with open('countriesDictionary.txt') as json_file:
+    countries = json.load(json_file)
+
+def getCountryName(iso):
+    if iso not in countries:
+        exit(1)
+    return countries[iso]
+    
 def concatArgs():
     i = 1
     total = len(sys.argv)
@@ -50,10 +56,7 @@ def getWeather(weather):
     print (weather["weather"][0]["description"])
     print (toCelsius(weather["main"]["temp"]))
     print (weather["wind"]["speed"])
-    #country = pycountry.countries.get(alpha_2 = weather["sys"]["country"]).name
-    #translator= Translator(to_lang="pl")
-    #print(translator.translate(country))
-    print(weather["sys"]["country"])
+    print (getCountryName(weather["sys"]["country"]))
     return 0
 
 # My API key.
