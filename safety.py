@@ -10,7 +10,8 @@ def get_safety(place):
     place = place.lower()
     place = place.replace(' ', '-')
 
-    driver = Chrome(executable_path='/home/piotr/chromedriver', options=options)
+    # insert your chromedriver path
+    driver = Chrome(executable_path='###########', options=options)
     gov = 'https://www.gov.pl/web/dyplomacja/'
     gov = gov + place
     driver.get(gov)

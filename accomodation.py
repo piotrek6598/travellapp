@@ -14,7 +14,8 @@ def get_hotels(place, date1, date2, noAdults, noChilds, resultSize, maxPrice, so
     options = Options()
     options.headless = True
 
-    driver = Chrome(executable_path='/opt/chromedriver', options=options)
+    # insert your chromedriver path
+    driver = Chrome(executable_path='###########', options=options)
     trivago = 'https://www.trivago.pl'
     driver.get(trivago)
 

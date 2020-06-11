@@ -60,7 +60,7 @@ def getWeather(weather):
     return 0
 
 # My API key.
-key = '0c57e9cadf598213edf8bb3ab57dba93'
+key = '################################'
 
 if (len(sys.argv) < 2):
     print('Usage: ' + sys.argv[0] + ' place')
